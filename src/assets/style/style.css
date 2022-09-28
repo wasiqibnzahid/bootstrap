@@ -1,0 +1,354 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 5rem;
+}
+.row {
+  margin-top: 1rem;
+}
+.col-md-4 select {
+  color: #474141;
+  padding: 0.5rem 2rem;
+  font-size: 18px;
+  border-radius: 5px;
+  width: 20rem;
+  outline: none;
+  margin-bottom: 2rem;
+  background-color: rgb(8 8 8 / 5%);
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+}
+.table {
+  margin-top: 4rem;
+}
+/* .table > :not(caption) > * > * {
+  text-align: center;
+} */
+.text-primary {
+  color: #5291ee !important;
+}
+/* button {
+  color: white;
+  background-color: #474141;
+  border: none;
+  border-radius: 0.35rem;
+}
+.dropdown-toggle::after {
+  margin-left: 0% !important;
+  width: 0.7rem !important;
+} */
+input {
+  margin-right: 1rem;
+}
+tr:hover {
+  box-shadow: 0px 2px 4px #e5dede;
+  background-color: #fff;
+}
+.table-striped {
+  --bs-table-striped-bg: rgb(89 75 75 / 5%);
+}
+.select {
+  width: 1.3rem;
+  color: white;
+  background-color: #474141;
+  border: none;
+  border-radius: 0.35rem;
+}
+
+.select1 {
+  display: none;
+  width: 1.3rem;
+  border: none;
+}
+.select1:hover {
+  display: inline-block;
+  border: none;
+}
+.btn {
+  color: #39dfa3;
+  padding: 0.5rem 2rem;
+  font-size: 18px;
+  font-weight: bold;
+  border: 3px solid #39dfa3;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+}
+.btn:hover {
+  background-color: #39dfa3;
+  border-color: #39dfa3;
+  color: #474141;
+}
+.btn1 {
+  color: #474141;
+  padding: 0.5rem 2rem;
+  font-size: 18px;
+  font-weight: bold;
+  border: 3px solid #474141;
+  border-radius: 5px;
+  margin-right: 3rem;
+  cursor: pointer;
+  background: none;
+  float: right;
+}
+.btn1:hover {
+  border-color: #39dfa3;
+  color: #39dfa3;
+}
+.input {
+  border: none;
+}
+.nav-tabs {
+  background-color: none;
+  border-color: none;
+}
+.nav-link {
+  color: #474141;
+  font-weight: bold;
+  border: none !important;
+}
+.nav-link:hover {
+  color: #474141;
+}
+/* .col-md-4,
+.col-md-3,
+.col-md-2 select , input {
+  color: #474141;
+  padding: 0.5rem 2rem;
+  font-size: 18px;
+  border-radius: 5px;
+  width: 10rem;
+  outline: none;
+  border-color: rgb(8 8 8 / 10%);
+  letter-spacing: 1px;
+  cursor: pointer;
+} */
+
+.list-group-item select,
+input:not([type="checkbox"]),
+textarea {
+  color: #474141;
+  padding: 0.5rem 2rem;
+  font-size: 18px;
+  border-radius: 5px;
+  width: 10rem;
+  outline: none;
+  resize: none;
+  margin-bottom: 2rem;
+  border-color: rgb(8 8 8 / 10%);
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+/* select:hover {
+  color: #474141;
+  padding: 0.5rem 2rem;
+  font-size: 18px;
+  background-color: rgb(89 75 75 / 5%);
+  border-radius: 5px;
+  border-color: none;
+  letter-spacing: 1px;
+  cursor: pointer;
+} */
+/* input {
+  color: #474141;
+  padding: 0.5rem 2rem;
+  font-size: 18px;
+  background-color: rgb(89 75 75 / 5%);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  letter-spacing: 1px;
+  cursor: pointer;
+} */
+.col-md-2 input {
+  width: 15rem;
+  padding: 0.4rem 2rem;
+}
+.Addline {
+  margin-top: 1rem;
+  color: #1b7de3;
+  font-weight: bold;
+}
+.line::after {
+  height: 2px;
+  width: 100%;
+  background: #a59d9d;
+  content: " ";
+  display: block;
+}
+.line p {
+  font-size: 1.2rem;
+}
+.list-group-item label {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.line span {
+  color: #1b7de3;
+  font-weight: bold;
+}
+.Addline::before {
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  border-radius: 50%;
+  background: #1b7de3;
+  content: " +";
+  display: inline-block;
+  color: white;
+}
+.button {
+  margin-right: 4rem;
+  background-color: #cfcaca;
+  border: none;
+  color: white;
+  width: 11rem;
+  padding: 0.5rem 2rem;
+  font-size: 18px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-weight: bold;
+  float: right;
+  margin-left: 4rem;
+}
+.button1 {
+  background-color: #39dfa3;
+  border: none;
+  color: #5b5454;
+  width: 11rem;
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+  font-size: 18px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  float: right;
+}
+.list-group-horizontal {
+  --bs-list-group-border-color: none;
+}
+#Qty {
+  width: 5rem;
+}
+.list-group-item .item {
+  width: 8rem;
+}
+.list-group-item .margin1 {
+  margin-left: 6rem;
+}
+.list-group-item .margin {
+  border: none;
+  margin-left: 4rem;
+}
+.date {
+  margin: 2rem;
+}
+#date {
+  margin-left: 13rem;
+  margin-right: 14rem;
+}
+.datepick {
+  position: relative;
+}
+.datepick {
+  border: none;
+  width: 12rem;
+}
+.bi-calendar {
+  position: absolute;
+  left: 10px;
+  top: 13px;
+}
+.date1 {
+  display: inherit;
+}
+.label {
+  margin-top: 0.5rem;
+  color: #5b5454;
+}
+
+th {
+  text-align: center;
+  font-weight: 300;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  padding: 0.5rem 0;
+}
+td:first-of-type input {
+  margin-right: 25%;
+}
+td {
+  vertical-align: middle;
+  text-align: left;
+}
+td:not(:first-of-type) {
+  padding: 1.3rem 0;
+  padding-left: 8% !important;
+}
+
+div.select {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  position: relative !important;
+}
+
+div .dropdown,
+.searchDropdown {
+  position: absolute;
+  left: 50%;
+  background: white;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
+  transform: translateX(-50%);
+  min-width: 75px;
+  top: 120%;
+  min-height: 50px;
+  height: fit-content;
+  width: fit-content;
+  padding: 1rem;
+  border-radius: 8px;
+  z-index: 1 !important;
+}
+div.searchDropdown {
+  left: 30%;
+  top: 50%;
+}
+
+div .dropdown ul {
+  cursor: pointer;
+}
+.rotate {
+  transform: rotate(180deg);
+  transition: 200ms;
+}
+.red-text {
+  color: red !important;
+}
+.green-text {
+  color: green !important;
+}
+
+.modal-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+.modal-container .card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  min-width: 250px;
+  max-width: 600px;
+  transform: translate(-50%, -50%);
+  min-height: 350px;
+  height: 60%;
+}
