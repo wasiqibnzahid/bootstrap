@@ -1,11 +1,17 @@
 * {
   box-sizing: border-box;
+  /* padding: 0;
+  margin: 0; */
+}
+ul {
+  list-style-type: none;
 }
 body {
   margin: 5rem;
 }
 .row {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .col-md-4 select {
   color: #474141;
@@ -21,7 +27,7 @@ body {
   cursor: pointer;
 }
 .table {
-  margin-top: 4rem;
+  /* margin-top: 1.5rem; */
 }
 /* .table > :not(caption) > * > * {
   text-align: center;
@@ -52,11 +58,20 @@ tr:hover {
 .select {
   width: 1.3rem;
   color: white;
-  background-color: #474141;
+  background-color: #757373;
   border: none;
   border-radius: 0.35rem;
 }
-
+.select img {
+  width: 60%;
+  margin: auto;
+  display: block;
+  transform: translateY(5px);
+  transition: 100ms;
+}
+.select img.rotateImg {
+  transform: translateY(4px) rotate(180deg);
+}
 .select1 {
   display: none;
   width: 1.3rem;
@@ -281,20 +296,29 @@ th {
 td:first-of-type input {
   margin-right: 25%;
 }
-td {
+td:not(:first-of-type) {
+  padding: 0% !important;
+}
+.TBD > tr > td {
   vertical-align: middle;
-  text-align: left;
+  text-align: center !important;
+  padding: 1.9rem 0.8rem !important;
+}
+.TBD tr:hover {
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.247);
 }
 td:not(:first-of-type) {
   padding: 1.3rem 0;
   padding-left: 8% !important;
 }
 
-div.select {
-  width: 30px;
-  height: 30px;
+.select {
+  width: 25px;
+  height: 25px;
   cursor: pointer;
   position: relative !important;
+  transform: translate(3px, 7px);
+  transition: 200ms;
 }
 
 div .dropdown,
@@ -305,25 +329,120 @@ div .dropdown,
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
   transform: translateX(-50%);
   min-width: 75px;
-  top: 120%;
+  top: 175%;
   min-height: 50px;
   height: fit-content;
   width: fit-content;
-  padding: 1rem;
   border-radius: 8px;
+  padding-top: 1rem;
   z-index: 1 !important;
 }
+.dropdown ul {
+  list-style-type: none;
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+.dropdown li {
+  white-space: nowrap;
+  padding: 0.75rem;
+  cursor: pointer;
+  width: 10rem;
+  transition: 100ms;
+  transform: translateX(0px);
+  position: relative;
+  padding-left: 1rem;
+}
+.dropdown li:not(:last-of-type)::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  height: 1px;
+  width: 95%;
+  transform: translateX(calc(-50% + 10px));
+  background-color: rgb(167, 162, 162);
+}
+.dropdown li:hover {
+  color: blue;
+  transform: translateX(3px);
+  font-weight: 500;
+}
+.dropdown li img {
+  max-width: 15px;
+  margin-top: -5px;
+  margin-right: 2px;
+}
 div.searchDropdown {
-  left: 30%;
-  top: 50%;
+  left: 0%;
+  top: 100%;
+  width: 100%;
+  transform: translate(0);
+}
+.searchDropdown ul {
+  padding: 0.75rem;
+}
+.searchDropdown ul li {
+  position: relative;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: black;
+  padding-left: 1rem;
+  cursor: pointer;
+}
+.searchDropdown ul li:hover {
+  transform: translateX(5px);
+}
+.searchDropdown ul li:hover::before {
+  transform: translateX(calc(-50% - 5px)) !important;
 }
 
+.searchDropdown ul li:not(:last-of-type)::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  height: 1px;
+  width: 95%;
+  transform: translateX(calc(-50%));
+  background-color: rgb(167, 162, 162);
+}
+.searchDropdown input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: rgba(211, 211, 211, 0.6);
+  border-radius: 0;
+  cursor: text;
+  margin: 0;
+}
+.searchDropdownParent {
+  background: rgb(156, 152, 152);
+  width: 40%;
+  position: relative;
+  min-width: 250px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(214, 212, 212);
+  background-image: url(https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_arrow_drop_down_48px-512.png);
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: 50%;
+  background-size: 30px;
+}
+.searchDropdownParent .showSearchDiv {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
 div .dropdown ul {
   cursor: pointer;
 }
 .rotate {
-  transform: rotate(180deg);
-  transition: 200ms;
+  transform: rotate(180deg) translate(-3px, -7px);
 }
 .red-text {
   color: red !important;
@@ -351,4 +470,87 @@ div .dropdown ul {
   transform: translate(-50%, -50%);
   min-height: 350px;
   height: 60%;
+}
+.Dialog {
+  background: white;
+  position: absolute;
+  width: 30%;
+  left: 50%;
+  top: 50%;
+  box-shadow: 0px 1px 12px -4px black;
+
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+}
+.Dialog > div:nth-child(1) {
+  padding: 1rem 0.1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.Dialog > div:nth-child(3) {
+  padding: 1rem 2rem;
+}
+.Dialog > div:nth-child(4) {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.Dialog > div:nth-child(4) > button {
+  padding: 0.6rem 2rem;
+  border: none;
+  border-radius: 10px;
+}
+.Dialog > div:nth-child(4) > button:nth-child(1) {
+  color: white;
+  background: silver;
+}
+.Dialog > div:nth-child(4) > button:nth-child(2) {
+  color: black;
+  background: #39dfa3;
+}
+.Dialog > div > div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.8rem;
+  justify-content: space-between;
+}
+.Overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.4;
+  z-index: 2;
+}
+hr {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+.Dialog > div > div > input {
+  width: 100%;
+  margin: 0;
+}
+.Dialog > div > div > label {
+  margin-bottom: 1rem;
+}
+.Dialog > div > div > span {
+  color: silver;
+}
+.Dialog > div > div > select {
+  width: 100%;
+  margin: 0;
+  padding: 0.6rem 0;
+  border: 1px solid rgb(8 8 8 / 10%);
+  background: transparent;
+}
+.Dialog > div > div > textarea {
+  width: 100%;
+  margin: 0;
+  padding: 0.6rem 0;
+  border: 1px solid rgb(8 8 8 / 10%);
+  background: transparent;
 }

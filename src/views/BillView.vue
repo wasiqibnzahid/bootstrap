@@ -1,27 +1,28 @@
 <template>
   <div class="row">
-    <div style="position: relative;" class="col-md-4">
-      <div
-        @click="showSearch = !showSearch"
-        ref="searchHandler"
-        class="searchDropdownParent"
-      >
+    <div style="position: relative" class="col-md-4">
+      <div ref="searchHandler" class="searchDropdownParent">
+        <div class="showSearchDiv" @click="showSearch = !showSearch"></div>
         {{ selectedVendor }}
-      </div>
-      <div v-show="showSearch" class="searchDropdown" ref="searchDropdown">
-        <input label="Search Here" v-model="searchText" />
-        <ul>
-          <li
-            v-for="(item, index) in searchedItems"
-            :key="index"
-            @click="
-              selectedVendor = item;
-              showSearch = false;
-            "
-          >
-            {{ item }}
-          </li>
-        </ul>
+        <div v-show="showSearch" class="searchDropdown" ref="searchDropdown">
+          <input
+            label="Search Here"
+            v-model="searchText"
+            placeholder="Search a vender"
+          />
+          <ul>
+            <li
+              v-for="(item, index) in searchedItems"
+              :key="index"
+              @click="
+                selectedVendor = item;
+                showSearch = false;
+              "
+            >
+              {{ item }}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="col-md-4 date1">
@@ -66,13 +67,14 @@
     <table class="table table-striped">
       <thead class="text-primary">
         <tr>
+          <th scope="col"><input type="checkbox" /></th>
           <th scope="col">Date</th>
           <th scope="col">Number</th>
           <th scope="col">Vendor</th>
           <th scope="col">Amount Due</th>
           <th scope="col">
-            Payment Status
-            <select class="select1">
+            <label for="PaymentStatus">Payment Status</label>
+            <select class="select1" id="PaymentStatus">
               <option></option>
               <option value="volvo">All</option>
               <option value="saab">Paid</option>
@@ -82,11 +84,12 @@
           <th scope="col">Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="TBD">
         <tr v-for="(bill, index) in billList" :key="index">
-          <td>
-            <input type="checkbox" v-model="bill.checked" />{{ bill.date }}
+          <td scope="row">
+            <input type="checkbox" v-model="bill.checked" />
           </td>
+          <td>{{ bill.date }}</td>
           <td>{{ bill.number }}</td>
           <td>{{ bill.name }}</td>
           <td>${{ bill.price }}</td>
@@ -94,21 +97,23 @@
             {{ bill.status ? "Paid" : "Unpaid" }}
           </td>
           <td>
-            Record a Payment
-            <div style="position: relative">
-              <div
-                class="select"
-                ref="modalOpener"
-                :class="bill.modal ? 'rotate' : ''"
-                @click="showModal(index)"
-              ></div>
+            <span @click="openRecordPayment">Record a Payment</span>
+            <div style="position: relative; display: inline-block">
+              <div class="select" ref="modalOpener" @click="showModal(index)">
+                <img
+                  :class="bill.modal ? 'rotateImg' : ''"
+                  src="https://static.thenounproject.com/png/551749-200.png"
+                />
+              </div>
               <div ref="modal" v-show="bill.modal" class="dropdown">
                 <ul class="options">
                   <li @click="bill.modal = false">Edit</li>
                   <li @click="bill.modal = false">Create Bill</li>
                   <li @click="bill.modal = false">
                     <!-- Add image here -->
-                    <img />
+                    <img
+                      src="https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/trash-512.png"
+                    />
                     Delete
                   </li>
                 </ul>
@@ -118,6 +123,46 @@
         </tr>
       </tbody>
     </table>
+    <div v-show="recordPayment" class="Dialog">
+      <div>
+        <span>Record a manual payment</span>
+        <span @click="CloseDialog" style="cursor: pointer">x</span>
+      </div>
+      <hr />
+      <div>
+        <div>
+          <label for="">Payment Method</label>
+          <input type="text" />
+        </div>
+        <div>
+          <label for="">Amount</label>
+          <input type="text" />
+          <span>USD - U.S dollar</span>
+        </div>
+        <div>
+          <label for="">Payment Date</label>
+          <input type="date" />
+        </div>
+        <div>
+          <label for="">Payment Account</label>
+          <select name="" id="">
+            <option value=""></option>
+            <option value="">1</option>
+            <option value="">2</option>
+          </select>
+          <span>USD - U.S dollar</span>
+        </div>
+        <div>
+          <label for="">Memo</label>
+          <textarea name="" id="" rows="5"></textarea>
+        </div>
+      </div>
+      <div>
+        <button @click="CloseDialog">Cancel</button>
+        <button>Save</button>
+      </div>
+    </div>
+    <div class="Overlay" v-show="recordPayment"></div>
   </div>
 </template>
 
@@ -132,7 +177,7 @@ export default {
           status: true,
           number: "123",
           date: "21/03/2022",
-          modal: false,
+          modal: true,
         },
         {
           name: "Hello 2",
@@ -155,12 +200,13 @@ export default {
       showSearch: false,
       searchText: "",
       selectedVendor: "All Vendors",
+      recordPayment: false,
     };
   },
   mounted() {
-    document.addEventListener("click", (e) => {
-      this.handleModal(e);
-    });
+    // document.addEventListener("click", (e) => {
+    //   this.handleModal(e);
+    // });
   },
   methods: {
     showModal(index) {
@@ -172,36 +218,42 @@ export default {
         }
       });
     },
-    handleModal(e) {
-      // console.log(e);
-      let closeModal = true;
-      this.$refs.modal.forEach((x) => {
-        if (e.target == x || x.contains(e.target)) {
-          closeModal = false;
-        }
-      });
-      // console.log(this.$refs.modalOpener);
-
-      this.$refs.modalOpener.forEach((x) => {
-        // console.log(e.target == x.modalOpener);
-        if (e.target == x) {
-          closeModal = false;
-        }
-      });
-      if (closeModal) {
-        this.billList.forEach((x) => {
-          x.modal = false;
-        });
-      }
-      // Search dropdown
-      if (
-        e.target != this.$refs.searchHandler &&
-        e.target != this.$refs.searchDropdown &&
-        !this.$refs.searchDropdown.contains(e.target)
-      ) {
-        this.showSearch = false;
-      }
+    openRecordPayment() {
+      this.recordPayment = true;
     },
+    CloseDialog() {
+      this.recordPayment = false;
+    },
+    // handleModal(e) {
+    //   // console.log(e);
+    //   let closeModal = true;
+    //   this.$refs.modal.forEach((x) => {
+    //     if (e.target == x || x.contains(e.target)) {
+    //       closeModal = false;
+    //     }
+    //   });
+    //   // console.log(this.$refs.modalOpener);
+
+    //   this.$refs.modalOpener.forEach((x) => {
+    //     // console.log(e.target == x.modalOpener);
+    //     if (e.target == x) {
+    //       closeModal = false;
+    //     }
+    //   });
+    //   if (closeModal) {
+    //     this.billList.forEach((x) => {
+    //       x.modal = false;
+    //     });
+    //   }
+    //   // Search dropdown
+    //   if (
+    //     e.target != this.$refs.searchHandler &&
+    //     e.target != this.$refs.searchDropdown &&
+    //     !this.$refs.searchDropdown.contains(e.target)
+    //   ) {
+    //     this.showSearch = false;
+    //   }
+    // },
   },
   computed: {
     searchedItems() {
