@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 date1">
+    <div class="col-md-5 date1">
       <label for="from" class="label">From:</label>
       <div class="datepick">
         <input class="datepick" type="text" placeholder="2021/04/15" />
@@ -59,7 +59,7 @@
         </svg>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <a @click="$router.push('/create-bill')"
         ><button class="btn">Create a Bill</button></a
       >
@@ -74,6 +74,7 @@
           <th scope="col">Amount Due</th>
           <th scope="col">
             <label for="PaymentStatus">Payment Status</label>
+
             <select class="select1" id="PaymentStatus">
               <option></option>
               <option value="volvo">All</option>
@@ -97,7 +98,7 @@
             {{ bill.status ? "Paid" : "Unpaid" }}
           </td>
           <td>
-            <span @click="openRecordPayment">Record a Payment</span>
+            <a @click="openRecordPayment()"><span>Record a Payment</span> </a>
             <div style="position: relative; display: inline-block">
               <div class="select" ref="modalOpener" @click="showModal(index)">
                 <img
@@ -107,8 +108,9 @@
               </div>
               <div ref="modal" v-show="bill.modal" class="dropdown">
                 <ul class="options">
-                  <li @click="bill.modal = false">Edit</li>
-                  <li @click="bill.modal = false">Create Bill</li>
+                  <li @click="openRecordPayment">Record a Payment</li>
+                  <li @click="$router.push('/create-bill')">View/Edit</li>
+                  <li @click="bill.modal = false">Duplicate</li>
                   <li @click="bill.modal = false">
                     <!-- Add image here -->
                     <img
@@ -177,7 +179,7 @@ export default {
           status: true,
           number: "123",
           date: "21/03/2022",
-          modal: true,
+          modal: false,
         },
         {
           name: "Hello 2",
@@ -196,7 +198,7 @@ export default {
           modal: false,
         },
       ],
-      searchItems: ["Vendor 1", "Vendor 2", "vendor 3", "test"],
+      searchItems: ["Vendor 1", "Vendor 2", "Vendor 3"],
       showSearch: false,
       searchText: "",
       selectedVendor: "All Vendors",
@@ -219,41 +221,14 @@ export default {
       });
     },
     openRecordPayment() {
+      this.billList.forEach((x) => {
+        x.modal = false;
+      });
       this.recordPayment = true;
     },
     CloseDialog() {
       this.recordPayment = false;
-    },
-    // handleModal(e) {
-    //   // console.log(e);
-    //   let closeModal = true;
-    //   this.$refs.modal.forEach((x) => {
-    //     if (e.target == x || x.contains(e.target)) {
-    //       closeModal = false;
-    //     }
-    //   });
-    //   // console.log(this.$refs.modalOpener);
-
-    //   this.$refs.modalOpener.forEach((x) => {
-    //     // console.log(e.target == x.modalOpener);
-    //     if (e.target == x) {
-    //       closeModal = false;
-    //     }
-    //   });
-    //   if (closeModal) {
-    //     this.billList.forEach((x) => {
-    //       x.modal = false;
-    //     });
-    //   }
-    //   // Search dropdown
-    //   if (
-    //     e.target != this.$refs.searchHandler &&
-    //     e.target != this.$refs.searchDropdown &&
-    //     !this.$refs.searchDropdown.contains(e.target)
-    //   ) {
-    //     this.showSearch = false;
-    //   }
-    // },
+    }, 
   },
   computed: {
     searchedItems() {
