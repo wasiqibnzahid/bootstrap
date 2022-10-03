@@ -74,7 +74,7 @@
           <th scope="col">Amount Due</th>
           <th scope="col">
             <label for="PaymentStatus">Payment Status</label>
-            <select class="select1" id="PaymentStatus">
+            <select style="display: none;" class="select1" id="PaymentStatus">
               <option></option>
               <option value="volvo">All</option>
               <option value="saab">Paid</option>
