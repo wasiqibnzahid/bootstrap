@@ -336,7 +336,7 @@ div .dropdown,
   width: fit-content;
   border-radius: 8px;
   padding-top: 1rem;
-  z-index: 1 !important;
+  z-index: 2;
 }
 .dropdown ul {
   list-style-type: none;
@@ -407,6 +407,27 @@ div.searchDropdown {
   transform: translateX(calc(-50%));
   background-color: rgb(167, 162, 162);
 }
+.backToBills {
+  /* border-top: 1px solid #ccc; */
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 3rem;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+.backToBills p {
+  background: url(../img//backarrow.png);
+  background-size: 20px;
+  background-position: 18px center;
+  padding-left: 3rem;
+  background-repeat: no-repeat;
+  margin-bottom: 0;
+  cursor: pointer;
+}
 .searchDropdown input {
   width: 100%;
   border: none;
@@ -415,6 +436,10 @@ div.searchDropdown {
   border-radius: 0;
   cursor: text;
   margin: 0;
+  background-image: url(../img/search.png);
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position: 95% center;
 }
 .searchDropdownParent {
   width: 40%;

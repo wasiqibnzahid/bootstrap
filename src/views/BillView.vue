@@ -74,7 +74,6 @@
           <th scope="col">Amount Due</th>
           <th scope="col">
             <label for="PaymentStatus">Payment Status</label>
-
             <select class="select1" id="PaymentStatus">
               <option></option>
               <option value="volvo">All</option>
@@ -228,7 +227,7 @@ export default {
     },
     CloseDialog() {
       this.recordPayment = false;
-    }, 
+    },
   },
   computed: {
     searchedItems() {

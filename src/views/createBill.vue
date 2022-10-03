@@ -1,7 +1,7 @@
 <template>
   <div>
     <h5>Add bill</h5>
-    <hr /> 
+    <hr />
     <div class="row">
       <div class="col-3">
         <div style="margin-bottom: 12%">
@@ -24,8 +24,8 @@
                   v-model="searchText"
                   placeholder="Search a vender"
                 />
-                <div>
-                  <div
+                <ul>
+                  <li
                     v-for="(item, index) in searchedItems"
                     :key="index"
                     @click="
@@ -34,8 +34,8 @@
                     "
                   >
                     {{ item }}
-                  </div>
-                </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -59,8 +59,8 @@
                   v-model="searchCurrency"
                   placeholder="Search a vender"
                 />
-                <div>
-                  <div
+                <ul>
+                  <li
                     v-for="(item, index) in searchedItemsCurrency"
                     :key="index"
                     @click="
@@ -69,8 +69,8 @@
                     "
                   >
                     {{ item }}
-                  </div>
-                </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -175,8 +175,8 @@
                 v-model="selectedTax"
                 placeholder="Search a vender"
               />
-              <div>
-                <div
+              <ul>
+                <li
                   v-for="(item, index) in searchedItems"
                   :key="index"
                   @click="
@@ -185,8 +185,8 @@
                   "
                 >
                   {{ item }}
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -204,8 +204,8 @@
     <p class="Addline">Add a line</p>
     <div class="row">
       <div class="col-md-12">
-        <button class="button1">Save</button>
-        <button class="button">Cancel</button>
+        <button class="button1" @click="$router.push('/bills')">Save</button>
+        <button class="button" @click="$router.push('/bills')">Cancel</button>
       </div>
     </div>
 
@@ -249,16 +249,28 @@ export default {
     showSearch: {
       handler: function () {
         this.searchText = "";
+        if (this.showSearch === true) {
+          this.showTax = false;
+          this.showSearchCurrency = false;
+        }
       },
     },
     showTax: {
       handler: function () {
         this.searchTax = "";
+        if (this.showTax === true) {
+          this.showSearch = false;
+          this.showSearchCurrency = false;
+        }
       },
     },
     showSearchCurrency: {
       handler: function () {
         this.searchCurrency = "";
+        if (this.showSearchCurrency === true) {
+          this.showTax = false;
+          this.showSearch = false;
+        }
       },
     },
   },

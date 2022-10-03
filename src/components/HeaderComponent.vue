@@ -10,7 +10,9 @@
         <router-link class="nav-link" to="/vendors">Vendors</router-link>
       </li>
     </ul>
-    <div v-else @click="backToBills()" class="nav-item">Back to Bills</div>
+    <div v-else class="nav-item backToBills">
+      <p @click="backToBills()">Back to Bills</p>
+    </div>
   </div>
 </template>
 
@@ -20,6 +22,12 @@ export default {
     return {
       showback: false,
     };
+  },
+  mounted() {
+    this.showback = false;
+    if (this.$route.path == "/create-bill") {
+      this.showback = true;
+    }
   },
   watch: {
     $route: {
